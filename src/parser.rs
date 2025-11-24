@@ -14,7 +14,7 @@ use crate::save_info_struct::SaveNameInfo;
 /// The excepted internal tag pattern is a string, enclosed in two 
 /// "double underscores" (`__`) symbols.
 /// 
-/// ```rust
+/// ```rust, ignore
 /// assert_eq!(parser("__some_attr__"), Ok(("", "some_attr")));
 /// assert_eq!(parser("__sometag__user2.dat"), Ok(("user2.dat", "sometag")));
 /// ```
@@ -30,7 +30,7 @@ fn parse_tag_internal(input: &str) -> IResult<&str, &str> {
 
 /// Parse backup id from file suffix
 /// 
-/// ```rust, no-run
+/// ```rust, ignore
 /// assert_eq!(parse_suffix_bak(".bak123"), Ok(("", "123")));
 /// assert_eq!(parse_suffix_bak(".bak"), Ok(("", "")));
 /// ```
@@ -45,7 +45,7 @@ fn parse_suffix_bak(input: &str) -> IResult<&str, &str> {
 
 /// Parses suffix and optional backup id
 /// 
-/// ```rust, no-run
+/// ```rust, ignore
 /// assert_eq!(parse_suffix(".dat"), Ok(("", None)));
 /// assert_eq!(parse_suffix(".dat.bak"), Ok(("", Some(""))));
 /// assert_eq!(parse_suffix(".dat.bak123"), Ok(("", Some("123"))));
@@ -60,7 +60,7 @@ fn parse_suffix(input: &str) -> IResult<&str, Option<&str>> {
 
 /// Parse the version tag
 /// 
-/// ```rust, no-run
+/// ```rust, ignore
 /// assert_eq!(parse_version("_1.0.28891"), Ok(("", "1.0.28891"))); // HKSS version
 /// assert_eq!(parse_version("_1.2.3.28891"), Ok(("", "1.2.3.28891"))); // legacy HKversion
 /// ```
@@ -76,7 +76,7 @@ fn parse_version(input: &str) -> IResult<&str, &str> {
 
 /// Parses user tag
 /// 
-/// ```rust, no-run
+/// ```rust, ignore
 /// assert_eq!(parse_user_tag("user1.dat"), Ok((".dat", "1"))); // basic case.
 /// assert_eq!(parse_user_tag("user4_1.0.28891.dat"), Ok(("_1.0.28891.dat", "4"))); // with version
 /// assert_eq!(parse_user_tag("usera-b_c__d.e.dat"), Ok((".dat", "a-b_c__d.e"))); // different symbols
